@@ -1,34 +1,33 @@
-
 #include<stdio.h>
 int main()
-{   
-	int N,  ant = 1, max = 0;
-	scanf("%d", &N);
-	long a[10000];
-	for(int i = 1; i <= N; i++){
-		scanf("%d",&a[i]);
-		//printf("%d",a[i]);
+{
+	int  bu = 0;
+	double you = 0, s;
+	scanf("%lf", &s);
+	double a[1000];
+	a[0] = 2;
+	//printf("a[0]=%lf\n", a[0]);
+			
+	if(s <= 2){
+		printf("1");
 	}
-	if(N!=1){
-		printf("here");
-		for(int i = 1; i <= N; i++){
-			if(a[i] < a[i+1]){
-				ant++;
-				//printf("ant=%d\n", ant);
-				if(ant > max){
-					max = ant + 1;
-					//printf("max=%d\n", max);
-				}
-			}
-			else{
-				ant = 1;
-			}
-		}	
-	}
+	
 	else{
-		max = 1;
+		for(int i = 0;;){
+			you = you + a[i];
+			//printf("you = %lf\n",you);
+			
+			bu++;
+			if(you > s){
+			printf("%d\n",bu);
+			break;
+			}
+			i++;	
+			//printf("i = %d\n", i);	
+			a[i] = a[i-1] * 0.98;
+			//printf("a[i] = %lf\n", a[i]);
+		}
+ 	return 0;   
 	}
-	printf("%d", max);
-	return 0;
 }
 
