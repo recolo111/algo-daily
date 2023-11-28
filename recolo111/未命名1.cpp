@@ -1,58 +1,45 @@
-#include<stdio.h>
-int a[10];
-int sum(int i,int a[])
-	{
-		for(int b = 0; i > 0; ){
-               b = i % 10;
-               //printf("b=%d ", b);
-			   a[10]=1;
-			   if(b == 0)
-               a[10] = 0;
-			   i = i / 10;
-			   //printf("i=%d ",i);
-	              for(int c = 1; c <= 9; c++){
-                     if(a[c] == b){
-                        a[c] = 0;
-                        //printf("循环里a[c]=%d ", a[c]);
-                        break;
-					  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-	                }
-	   }
-	   return 0;
+#include <stdio.h>
+#include <string.h>
+int main() {
+    char a[11], b[1000001];
+    gets(a);
+    gets(b);
+    strcat(a," "); 
+    strcat(b," ");//在ab后各加一个" "，减小配对的难度 
+    int i, s, n=0, l, j, ss=0, k, rec;
+    for (i = 0; a[i] != '\0'; i++) {
+        if (a[i] >= 'a')
+            a[i] -= 'a' - 'A';
+    }
+    for (i = 0; b[i] != '\0'; i++) {
+        if (b[i] >= 'a')
+            b[i] -= 'a' - 'A';
+    } //统一ab的大小写 
+    for (i = 0; b[i] != '\0'; i++) {
+        if (b[i] == ' ') {
+            s=1;
+            for (j = n,k = 0; j <= i, a[k] != '\0'; j++, k++) {
+                if(b[j] == a[k]) {
+                    s*=1;//用s来记录各个位能否对应，如果结果是1就正确，一位不对s就变成0 
+                } else {
+                     s*=0;
+                }
+            }
+            if (s == 1) {
+                ss++; //如果每次都对就增加符合的次数 
+            }
+            if (ss == 1 && s==1) {
+                rec = n; //记录第一次符合的位数 
+            }
+            n=i;
+            n++;
+        }
+    }
+    if (ss == 0) {
+        ss = -1;
+        printf("%d", ss);
+    } else if (ss >= 1) {
+        printf("%d %d", ss, rec);
+    }
+    return 0;
 	}
-	
-int main()
-{   int  i, ans = 0;
-    int x, y, z, b;
-    int A, B, C;
-	scanf("%d %d %d",&A, &B, &C);
-    
-    for(int i = 0; (C * i) <= 999; i++){
-	 a[1] = 1, a[2] = 2, a[3] = 3;
-	 a[4] = 4, a[5] = 5, a[6] = 6;
-	 a[7] = 7, a[8] = 8, a[9] = 9;
-       x = A * i;
-	   y = B * i;
-	   z = C * i;
-	   sum(x,a);
-	   sum(y,a);
-	   sum(z,a);
-	   if(a[10]==0)
-	   continue;
-	      //printf("a[1]=%d ",a[1]);
-	         if(a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+a[7]+a[8]+a[9]==0){
-	            printf("%d %d %d\n", x, y, z);
-	            ans++;
-	        }    
-	}
-    if(ans == 0){
-    	printf("No!!!");
-	}
-	return 0 ;
-}
-
-
-
-
-
-

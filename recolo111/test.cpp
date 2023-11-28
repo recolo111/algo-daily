@@ -1,61 +1,66 @@
 #include<stdio.h>
 int main()
-{ 
-	int n;
-	scanf("%d", &n);
-	int a, b, c = 0, t = 0;//a是测试数，t是判断数，c计数；
-	int x[3000];
-	for(int i = 0;i < 3000; i++){
-		x[i] = 0;
-	}
-	for(a = 2; a < n; a++){
-//		printf("a = %d ",a);
-		b = a - 1;
-		t = 0;
-//		printf("b = %d\n",b);
-		
-		for(; b > 1; b--){
-			if((a % b) == 0){  //判断不是素数；                                                                                                                      
-				t = 1;
-				break;
-			}
-//			printf("b = %d\n",b);
-		}
-		
-		if(t == 1){
-			continue;
-		}	
-		if(a == 2 || t == 0){
-//			printf("a = %d ",a);
-			x[c] = a;
-//			printf("c = %d ", c);
-//			printf("x[c] = %d \n",x[c]);
-			c++;
-		}
-		
-	}	//素数排列结束。
+{	int n, ans = 0;
+	scanf("%d",&n);
 	
-	int i, j, k;
-	int ans = 0;
-	for( i = 0; i < c; i++){
-		for( j = 0; j < c; j++){
-			for( k = 0; k < c; k++){
-				if(x[i] + x[j] + x[k] == n&&x[i] > 0&&x[j] > 0&&x[k] > 0){
-//					printf("i = %d j = %d k = %d\n", i, j, k);
-//					printf("x[i] = %d x[j] = %d x[k] = %d\n", x[i], x[j], x[k]);
-					printf("%d %d %d", x[i], x[j], x[k]);
-					ans = 1;
-					break;	
+	int a, b, c, d, e, f, g, h, i, j;
+	if(n >= 10 && n <= 30){
+		for( a = 1; a <= 3; a++){
+			for( b = 1; b <= 3; b++){
+				for( c = 1; c <= 3; c++){
+					for( d = 1; d <= 3; d++){
+						for( e = 1; e <= 3; e++){
+							for( f = 1; f <= 3; f++){
+								for( g = 1; g <= 3; g++){
+									for( h = 1; h <= 3; h++){
+										for( i = 1; i <= 3; i++){
+											for( j = 1; j <= 3; j++){
+												if(a + b + c + d + e + f + g + h + i + j == n){
+													ans++;
+												//printf("%d %d %d %d %d %d %d %d %d %d\n", j, i, h, g, f, e, d, c, b, a);
+												//printf("%d %d %d %d %d %d %d %d %d %d\n", a, b, c, d, e, f, g, h, i, j);
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}			
 				}
 			}
-		if(ans == 1){
-			break;
 		}
+	}
+	
+	printf("%d\n",ans);
+	
+	if(n >= 10 && n <= 30){
+		for( a = 1; a <= 3; a++){
+			for( b = 1; b <= 3; b++){
+				for( c = 1; c <= 3; c++){
+					for( d = 1; d <= 3; d++){
+						for( e = 1; e <= 3; e++){
+							for( f = 1; f <= 3; f++){
+								for( g = 1; g <= 3; g++){
+									for( h = 1; h <= 3; h++){
+										for( i = 1; i <= 3; i++){
+											for( j = 1; j <= 3; j++){
+												if(a + b + c + d + e + f + g + h + i + j == n){
+													ans++;
+												//printf("%d %d %d %d %d %d %d %d %d %d\n", j, i, h, g, f, e, d, c, b, a);
+												printf("%d %d %d %d %d %d %d %d %d %d\n", a, b, c, d, e, f, g, h, i, j);
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}			
+				}
+			}
 		}
-	if(ans == 1){
-		break;
 	}
-	}
-	return 0;
+	return 0;   
 }
 
