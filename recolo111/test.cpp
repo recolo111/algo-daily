@@ -1,66 +1,66 @@
 #include<stdio.h>
+#include<iostream>
+#include <string.h>
+using namespace std;
 int main()
-{	int n, ans = 0;
-	scanf("%d",&n);
+{	
+	string a;
+	getline(cin, a);
+	///cout << a << endl;
+	string b;
+	getline(cin, b);
+	//cout << b << endl;
+	a = a + ' ';
+	b = b + ' ';
+//	strcat(b," ");
+	int j,i;
+	for(i = 0; a[i] != '\0'; i++){
+		if(a[i] >= 'a'){
+			a[i] = a[i] - 32;
+			//printf("%s\n", a);
+		}
+	}
+	for(i = 0; b[i] != '\0'; i++){
+		if(b[i] >=  'a'){
+			b[i] = b[i] - 32;
+			//printf("%s\n", b);
+		}
+	}//全部都转换成大写。
 	
-	int a, b, c, d, e, f, g, h, i, j;
-	if(n >= 10 && n <= 30){
-		for( a = 1; a <= 3; a++){
-			for( b = 1; b <= 3; b++){
-				for( c = 1; c <= 3; c++){
-					for( d = 1; d <= 3; d++){
-						for( e = 1; e <= 3; e++){
-							for( f = 1; f <= 3; f++){
-								for( g = 1; g <= 3; g++){
-									for( h = 1; h <= 3; h++){
-										for( i = 1; i <= 3; i++){
-											for( j = 1; j <= 3; j++){
-												if(a + b + c + d + e + f + g + h + i + j == n){
-													ans++;
-												//printf("%d %d %d %d %d %d %d %d %d %d\n", j, i, h, g, f, e, d, c, b, a);
-												//printf("%d %d %d %d %d %d %d %d %d %d\n", a, b, c, d, e, f, g, h, i, j);
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}			
+	int flag, k, ans = 0, weizhi, n = 0;	//ans指次数，n指运行到位置。
+	for(i = 0; b[i] != '\0'; i++){
+		//printf("i = %d\n", i);
+		//printf("b[i] = %d\n",b[i]);
+		if(b[i] == ' '){
+			flag = 1;			
+			for(j = n, k = 0; j <= i && a[k] != '\0'; k++, j++){
+				//printf("b[i] = %d\n",b[j]);
+				if(b[j] == a[k]){
+					flag = flag * 1;
+				}
+				else{
+					flag = flag * 0;
 				}
 			}
+			//若该字母相同，之后不影响该次结果。
+			
+			if(flag == 1){
+				ans++;
+			}
+			if(flag == 1 && ans == 1){
+				weizhi = n;//保存首次位置
+			}	
+			n=i;
+			n++;
 		}
 	}
 	
-	printf("%d\n",ans);
-	
-	if(n >= 10 && n <= 30){
-		for( a = 1; a <= 3; a++){
-			for( b = 1; b <= 3; b++){
-				for( c = 1; c <= 3; c++){
-					for( d = 1; d <= 3; d++){
-						for( e = 1; e <= 3; e++){
-							for( f = 1; f <= 3; f++){
-								for( g = 1; g <= 3; g++){
-									for( h = 1; h <= 3; h++){
-										for( i = 1; i <= 3; i++){
-											for( j = 1; j <= 3; j++){
-												if(a + b + c + d + e + f + g + h + i + j == n){
-													ans++;
-												//printf("%d %d %d %d %d %d %d %d %d %d\n", j, i, h, g, f, e, d, c, b, a);
-												printf("%d %d %d %d %d %d %d %d %d %d\n", a, b, c, d, e, f, g, h, i, j);
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}			
-				}
-			}
-		}
+	if(ans == 0){
+		printf("-1");
+	}
+	else{
+		printf("%d ", ans);
+		printf("%d", weizhi);
 	}
 	return 0;   
 }
-
