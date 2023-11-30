@@ -1,66 +1,44 @@
 #include<stdio.h>
-#include<iostream>
-#include <string.h>
-using namespace std;
 int main()
-{	
-	string a;
-	getline(cin, a);
-	///cout << a << endl;
-	string b;
-	getline(cin, b);
-	//cout << b << endl;
-	a = a + ' ';
-	b = b + ' ';
-//	strcat(b," ");
-	int j,i;
-	for(i = 0; a[i] != '\0'; i++){
-		if(a[i] >= 'a'){
-			a[i] = a[i] - 32;
-			//printf("%s\n", a);
+{   
+	int n = 0, ant=0;
+	scanf("%d", &n);
+	int a[10000];
+	for(int i = 0; i < n; i++){
+		if((i+1) == n){
+			scanf("%d",&a[i]);
 		}
+		else{
+			scanf("%d ", &a[i]);
+		}
+		
+//		printf("i=%d ", i);
+//		printf("a[i]=%d\n", a[i]);
 	}
-	for(i = 0; b[i] != '\0'; i++){
-		if(b[i] >=  'a'){
-			b[i] = b[i] - 32;
-			//printf("%s\n", b);
-		}
-	}//全部都转换成大写。
-	
-	int flag, k, ans = 0, weizhi, n = 0;	//ans指次数，n指运行到位置。
-	for(i = 0; b[i] != '\0'; i++){
-		//printf("i = %d\n", i);
-		//printf("b[i] = %d\n",b[i]);
-		if(b[i] == ' '){
-			flag = 1;			
-			for(j = n, k = 0; j <= i && a[k] != '\0'; k++, j++){
-				//printf("b[i] = %d\n",b[j]);
-				if(b[j] == a[k]){
-					flag = flag * 1;
-				}
-				else{
-					flag = flag * 0;
+	int v[10000], k;
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < n; j++){
+			for( k = 0; k < n; k++){
+//				printf("a[i]=%d a[j]=%d a[k]=%d\n",a[i],a[j],a[k]);
+				if(a[i] == (a[j] + a[k])&&j != k&&j != i&&k != i){
+					ant++;
+					v[k] = 1;
+					break;
+					printf("a[i]=%d a[j]=%d a[k]=%d\n",a[i],a[j],a[k]);
+					printf("ant=%d\n",ant);
 				}
 			}
-			//若该字母相同，之后不影响该次结果。
-			
-			if(flag == 1){
-				ans++;
+			if(v[k] == 1){
+				break;
 			}
-			if(flag == 1 && ans == 1){
-				weizhi = n;//保存首次位置
-			}	
-			n=i;
-			n++;
 		}
+		if(v[k] == 1){
+			v[k] = 0;
+			continue;
+		}
+		
 	}
 	
-	if(ans == 0){
-		printf("-1");
-	}
-	else{
-		printf("%d ", ans);
-		printf("%d", weizhi);
-	}
-	return 0;   
+	printf("%d", ant);
+	return 0;
 }
