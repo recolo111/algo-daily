@@ -4,44 +4,23 @@
 using namespace std;
 
 int main(){
-	int n;
-	cin >> n;
-//	cout << n << endl;
-	int i, a[1000];
-	for(i = 0; i < n; i++){
+	int a[4];
+	for(int i = 0; i < 3; i++){
 		cin >> a[i];
 //		cout << a[i] <<endl;
 	}
-	
-	
-	int b[1000];
-	for(i = 1; i < n; i++){
-		if(a[i] - a[i - 1] < 0){
-			b[i] = - (a[i] - a[i - 1]);
-		}
-		else{
-			b[i] = a[i] - a[i - 1];
-		}
-//		cout << b[i] <<endl;
+	sort(a, a+3);
+	for(int i = 0; i < 3; i++){
+//		cout << a[i] <<endl;
 	}
 	
-	sort(b + 1, b + n);
-	for(i = 1; i < n; i++){
-		//cout << b[i] <<endl;
-	}
-	
-	int flag;
-	for(flag = 1, i = 1; i < n; i++){
-		if(b[i] != i){
-			flag = 0;
+	int max;
+	for(max = a[0]; max > 0; max--){
+		if(a[2] % max ==0&&a[0] % max == 0){
+			break;
 		}
 	}
-	if(flag == 1){
-		cout << "Jolly";
-	}
-	else{
-		cout << "Not jolly";
-	}
-	
+//	cout << 'max=' << max << endl;
+	cout << a[0]/max << '/' << a[2]/max <<endl;
 	return 0;
 }
