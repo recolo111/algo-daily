@@ -1,65 +1,67 @@
-#include<iostream>
 #include<stdio.h>
 #include<algorithm>
-#include<string>
+#include<iostream>
 using namespace std;
+struct people{
+	int hao;
+	int garde;
+}peo[5001];
 
-struct student{
-	string name;
-	int gardeping;
-	int gardeban;
-	char ganbu;
-	char xibu;
-	int lunwen;
-	int ans;
-	int sum;
-}stu[101];
-
-bool map(student a, student b){
-	if(a.ans == b.ans){
-		return a.sum < b.sum;
+bool map(people a, people b){
+	if(a.garde == b.garde){
+		return a.hao < b.hao;
 	}
 	else{
-		return a.ans > b.ans;
+		return a.garde > b.garde;
 	}
-};
-
-int main(){
-	int N;
-	cin >> N;
-	
-	for(int i = 0; i < N; i++){
-		cin >> stu[i].name >> stu[i].gardeping >> stu[i].gardeban >> stu[i].ganbu >> stu[i].xibu >> stu[i].lunwen;
-		stu[i].sum = i;
-	}
-	
-	int ans, answer = 0;
-	for(int i = 0; i < N; i++){
-		ans = 0;
-		if(stu[i].gardeping > 80 && stu[i].lunwen >= 1){
-			ans = ans + 8000;
-		}
-		if(stu[i].gardeping > 85 && stu[i].gardeban > 80){
-			ans = ans + 4000;
-		}
-		if(stu[i].gardeping > 90){
-			ans = ans + 2000;
-		}
-		if(stu[i].gardeping > 85 && stu[i].xibu == 'Y'){
-			ans = ans + 1000;
-		}
-		if(stu[i].gardeban > 80 && stu[i].ganbu == 'Y'){
-			ans = ans + 850;
-		}
-		stu[i].ans = ans;
-		answer = answer + ans;
-	}
-	
-	sort(stu, stu + N, map);
-	cout << stu[0].name << endl << stu[0].ans << endl << answer;
-	return 0;
 }
 
+int main(){
+	int n, m;
+	cin >> n >> m;
+	for(int i = 1; i <= n; i++){
+		cin >> peo[i].hao >> peo[i].garde;
+	}
+	
+	sort(peo + 1, peo + n + 1, map);
+//	for(int i = 1; i <= n; i++){
+//		cout << peo[i].hao <<' '<< peo[i].garde << endl;
+//	}
+	
+	int a = (15 * m) / 10;
+	int ans = 0;
+	for(int i = 1; i <= a; i++){
+//		cout << peo[i].hao <<' '<< peo[i].garde << endl;
+		ans++;
+		if(i == a){
+			for(i = i + 1; ; i++){
+				if(peo[i].garde == peo[a].garde){
+//					cout << peo[i].hao <<' '<< peo[i].garde << endl;
+					ans++;
+				}
+				else{
+					break;
+				}
+			}
+		}
+	}
+	
+	cout << peo[a].garde <<' '<< ans << endl;
+	
+	for(int i = 1; i <= a; i++){
+		cout << peo[i].hao <<' '<< peo[i].garde << endl;
+		if(i == a){
+			for(i = i + 1; ; i++){
+				if(peo[i].garde == peo[a].garde){
+					cout << peo[i].hao <<' '<< peo[i].garde << endl;
+				}
+				else{
+					break;
+				}
+			}
+		}
+	}	
+}
 
 
 
